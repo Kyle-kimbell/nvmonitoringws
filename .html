@@ -1,0 +1,48 @@
+export default function DashboardApp() {
+  const sensorPoints = [
+    { id: 1, label: "Input / Output 1", pin: "GPIO 4", value: "23.4°C", status: "Active" },
+    { id: 2, label: "Input / Output 2", pin: "GPIO 5", value: "61% RH", status: "Active" },
+    { id: 3, label: "Input / Output 3", pin: "GPIO 18", value: "Dry", status: "Standby" },
+    { id: 4, label: "Input / Output 4", pin: "GPIO 19", value: "ON", status: "Active" },
+    { id: 5, label: "Input / Output 5", pin: "GPIO 21", value: "12.1V", status: "Active" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-100 text-slate-900 p-6">
+      <div className="max-w-5xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold tracking-tight">ESP32 I/O Dashboard</h1>
+          <p className="text-slate-600 mt-2">
+            A simple React dashboard with space for 5 ESP32 input/output data points.
+          </p>
+        </header>
+
+        <section className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {sensorPoints.map((point) => (
+              <div
+                key={point.id}
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h2 className="text-xl font-semibold">{point.label}</h2>
+                    <p className="text-sm text-slate-500 mt-1">{point.pin}</p>
+                  </div>
+                  <span className="text-xs font-medium px-3 py-1 rounded-full bg-white border border-slate-200">
+                    {point.status}
+                  </span>
+                </div>
+
+                <div className="mt-6">
+                  <p className="text-sm text-slate-500">Live Value</p>
+                  <p className="text-3xl font-bold mt-1">{point.value}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}
